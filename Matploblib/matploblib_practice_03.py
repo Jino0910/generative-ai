@@ -35,5 +35,31 @@ hax[1].grid()
 hax[1].legend()
 
 # %% -- Histrogram
-data = np.random.randn(10000)
-plt.hist(data, 100, den)
+data = np.random.randn(5000)
+plt.hist(data, 100, density=True)
+
+# normal distribution
+x = np.linspace(-4,4,100)
+sigma = 1
+mean = 0
+nd = ( (1/(sigma*np.sqrt(2*np.pi)) * np.exp(-0.5*((x-mean)/sigma)**2)) )
+plt.plot(x,nd,  'r', label='Std Normal Dist')
+plt.ylabel('PSD')
+plt.xlabel('X')
+plt.legend()
+
+np.std(data)
+
+# %% 3D plot
+x = np.linspace(0,2*np.pi,20)
+y = np.linspace(0,2*np.pi,20)
+grid_x, grid_y = np.meshgrid(x,y)
+
+z = np.sin(grid_x)*np.sin(grid_y)
+
+hfig = plt.figure()
+hax = hfig.gca(projection='3d')
+hax.plot_surface(grid_x,grid_y,z,camp='jet')
+hax.set_xlabel('y')
+hax.set_xlabel('x')
+hax.set_xlabel('z')
